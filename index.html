@@ -91,63 +91,46 @@
             width: 100%;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
+        /* Home Section */
+        #home {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom right, var(--darker-bg), var(--dark-bg));
         }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-        }
-
+        
         .hero-content {
-            position: relative;
-            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
-
-        .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--accent), #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
         }
-
-        .hero p {
-            font-size: 1.3em;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
         }
-
-        .cta-button {
+        
+        .btn {
             display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, var(--accent), #1d4ed8);
+            background-color: var(--accent);
             color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin: 10px;
+            font-weight: 600;
+            transition: background-color 0.3s;
         }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        
+        .btn:hover {
+            background-color: #138496;
         }
-
+        
         /* Sections */
         section {
             padding: 80px 0;
