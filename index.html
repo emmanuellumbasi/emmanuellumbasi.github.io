@@ -1,6 +1,807 @@
-<html>
-  <body>
-    <h1>Emmanuel Lumbasi</h1>
-    <p>Welcome to my website!</p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Cybersecurity Student</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--accent), #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, var(--accent), #1d4ed8);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: var(--accent);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .profile-card {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent), #10b981);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .skill-bar {
+            width: 70%;
+            height: 8px;
+            background: rgba(148, 163, 184, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent), #10b981);
+            border-radius: 4px;
+            transition: width 2s ease;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-header {
+            padding: 20px;
+            background: linear-gradient(45deg, var(--accent), #1d4ed8);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-card {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .cert-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--success);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-form {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: var(--text);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(30, 41, 59, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--accent), #10b981);
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <nav>
+        <div class="container">
+            <div class="logo">CyberSec Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your Name</h1>
+                <p>Cybersecurity Student | Ethical Hacker | Digital Defender</p>
+                <p>Passionate about securing digital environments and protecting against emerging cyber threats</p>
+                <a href="#projects" class="cta-button">View My Work</a>
+                <a href="#contact" class="cta-button">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="profile-card">
+                    <div class="profile-image">🛡️</div>
+                    <h3>Cybersecurity Student</h3>
+                    <p>Currently pursuing a degree in Cybersecurity with a focus on network security, penetration testing, and incident response.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent); margin-bottom: 20px;">My Journey</h3>
+                    <p style="margin-bottom: 20px;">I'm a dedicated cybersecurity student with a passion for protecting digital assets and understanding the evolving threat landscape. My academic journey has equipped me with both theoretical knowledge and practical skills in various cybersecurity domains.</p>
+                    
+                    <p style="margin-bottom: 20px;">Through hands-on labs, capture-the-flag competitions, and personal projects, I've developed expertise in penetration testing, vulnerability assessment, network security, and incident response. I believe in continuous learning and staying updated with the latest security trends and technologies.</p>
+                    
+                    <p>My goal is to contribute to making the digital world safer by identifying vulnerabilities, implementing robust security measures, and educating others about cybersecurity best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>🔐 Security Tools</h3>
+                    <div class="skill-item">
+                        <span>Nmap</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Metasploit</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Wireshark</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Burp Suite</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>💻 Programming</h3>
+                    <div class="skill-item">
+                        <span>Python</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Bash/Shell</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>PowerShell</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>SQL</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🌐 Network Security</h3>
+                    <div class="skill-item">
+                        <span>Penetration Testing</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Vulnerability Assessment</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Network Analysis</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Incident Response</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🖥️ Operating Systems</h3>
+                    <div class="skill-item">
+                        <span>Linux (Kali, Ubuntu)</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Windows</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>macOS</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 65%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>VMware/VirtualBox</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects & Labs</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Network Vulnerability Scanner</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>Developed a Python-based network vulnerability scanner that identifies open ports, running services, and potential security weaknesses in network infrastructure.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Nmap</span>
+                            <span class="tag">Security</span>
+                            <span class="tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Web Application Pentest Lab</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>Created a vulnerable web application environment for practicing penetration testing techniques including SQL injection, XSS, and authentication bypasses.</p>
+                        <div class="project-tags">
+                            <span class="tag">Web Security</span>
+                            <span class="tag">OWASP</span>
+                            <span class="tag">Burp Suite</span>
+                            <span class="tag">PHP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Incident Response Automation</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>Built automated scripts for log analysis and incident response workflows, helping to quickly identify and respond to security threats.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">SIEM</span>
+                            <span class="tag">Automation</span>
+                            <span class="tag">Forensics</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Honeypot Network</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>Deployed and monitored a honeypot network to analyze attack patterns and gather threat intelligence from malicious actors.</p>
+                        <div class="project-tags">
+                            <span class="tag">Honeypots</span>
+                            <span class="tag">Threat Intel</span>
+                            <span class="tag">Linux</span>
+                            <span class="tag">Network Security</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Malware Analysis Sandbox</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>Set up an isolated environment for safe malware analysis, including dynamic and static analysis tools for understanding malicious code behavior.</p>
+                        <div class="project-tags">
+                            <span class="tag">Malware Analysis</span>
+                            <span class="tag">Sandbox</span>
+                            <span class="tag">Reverse Engineering</span>
+                            <span class="tag">Virtual Machines</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Security Awareness Training</h3>
+                    </div>
+                    <div class="project-content">
+                        <p>Designed and implemented a cybersecurity awareness program including phishing simulations and educational materials for students and staff.</p>
+                        <div class="project-tags">
+                            <span class="tag">Social Engineering</span>
+                            <span class="tag">Training</span>
+                            <span class="tag">Phishing</span>
+                            <span class="tag">Education</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">🏆</div>
+                    <h3>CompTIA Security+</h3>
+                    <p>In Progress</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🎯</div>
+                    <h3>CEH (Ethical Hacker)</h3>
+                    <p>Planned 2025</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🔒</div>
+                    <h3>CISSP</h3>
+                    <p>Future Goal</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🥇</div>
+                    <h3>CTF Competitions</h3>
+                    <p>Multiple Participations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>your.email@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div>
+                            <h3>LinkedIn</h3>
+                            <p>linkedin.com/in/yourprofile</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🐙</div>
+                        <div>
+                            <h3>GitHub</h3>
+                            <p>github.com/yourusername</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved. | Built with passion for cybersecurity</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollIndicator').style.width = scrolled + '%';
+        });
+
+        // Fade in animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Contact form handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            this.reset();
+        });
+
+        // Dynamic skill bar animation
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.style.width;
+                    entry.target.style.width = '0%';
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 200);
+                }
+            });
+        });
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
+    </script>
+</body>
 </html>
